@@ -24,8 +24,7 @@ def trazarEspectrograma(señalAudio, radioMuestreo):
 duracionInput = input('>>> Inserte la duración de la señal en segundos <<< \n')
 duracion = float(duracionInput)         # Duración en segundos
 
-radioMuestreoInput = input('>>> Inserte el radio de muestreo en Hertz <<< \n')
-radioMuestreo = float(radioMuestreoInput) # Tasa de muestreo en Hz
+radioMuestreo = 44100 # Tasa de muestreo en Hz
 
 frecuenciaInput = input('>>> Inserte la frecuencia de la señal en Hertz <<< \n')
 frecuencia = float(frecuenciaInput)      # Frecuencia de la onda sinusoidal en Hz
