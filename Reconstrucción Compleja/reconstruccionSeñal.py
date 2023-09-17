@@ -13,3 +13,11 @@ def agregarRuido(signal, nivelRuido):
     señalRuido = signal + ruido
     return señalRuido
 
+# Función para eliminar ruido de una señal mediante integración compleja
+def recuperarSeñal(señalRuido):
+    tamañoFiltro = 5  # Tamaño de la ventana del filtro
+    señalFiltrada = np.convolve(señalRuido, np.ones(tamañoFiltro)/tamañoFiltro, mode='same')
+    return señalFiltrada
+
+
+
