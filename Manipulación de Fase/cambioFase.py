@@ -3,17 +3,19 @@ import matplotlib.pyplot as plt
 
 # Función para modificar la fase de una señal de audio.
 def modificarFase(señalAudio, gradosDesfase):
-   
-    # Convierte el cambio de fase de grados a radianes
-    radianesDesfase = np.radians(gradosDesfase)
+    transformada = np.fft.fft(señalAudio)
+    magnitudTr = np.abs(transformada)
+    faseTr = np.angle(transformada)
+    radianesDesfase = np.deg2rad(gradosDesfase) # Convierte el cambio de fase de grados a radianes
+    faseMod = faseTr + radianesDesfase # Nueva fase de la señal
+    tranformadaMod = magnitudTr * np.exp(1j * faseMod) # Aplica el cambio de fase
 
-    # Aplica el cambio de fase
-    señalModificada = np.abs(señalAudio) * np.exp(1j * (np.angle(señalAudio) + radianesDesfase))
-    
+    señalModificada = np.fft.ifft(tranformadaMod)
+
     return señalModificada
 
+# Graficar la señal original y la señal con la fase modificada
 def graficarSeñales(señalOriginal, señalModificada, vectorTiempo):
-    # Graficar la señal original y la señal con la fase modificada
     plt.figure(figsize=(12, 4))
     plt.subplot(2, 1, 1)
     plt.plot(vectorTiempo, señalOriginal)
@@ -25,14 +27,15 @@ def graficarSeñales(señalOriginal, señalModificada, vectorTiempo):
     plt.show()
 
 # Crear una señal de audio (por ejemplo, una onda sinusoidal)
-duracion = 2
+duracion = 1
 radioMuestreo = 44100
-frecuencia = 10
+frecuencia = 5
 vectorTiempo = np.linspace(0, duracion, int(radioMuestreo * duracion), endpoint=False)
-señalAudio = np.sin(2 * np.pi * frecuencia * vectorTiempo) * 10
+señalAudio = np.sin(2 * np.pi * frecuencia * vectorTiempo)
 
-# Modificar la fase de la señal en 45 grados (pi/4 radianes)
-gradosDesfase = 180
+# Solicitar al usuario el desfase que desea aplicar
+gradosDesfaseInput = input('>>> Inserte los grados de desfase que desea aplicar <<< \n')
+gradosDesfase = float(gradosDesfaseInput)
 señalModificada = modificarFase(señalAudio, gradosDesfase)
 
 # Mostrar ambas señales
