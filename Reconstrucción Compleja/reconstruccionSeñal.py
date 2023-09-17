@@ -20,7 +20,7 @@ def recuperarSeñal(señalRuido):
     return señalFiltrada
 
 # Graficar las señales original, ruidosa y recuperada
-def graficarSeñales(señalOriginal, señalRuido, señalRecuperada, vectorTiempo):
+def graficarSeñales(señalOriginal, señalRuido, señalRecuperada):
     plt.figure(figsize=(12, 6))
     # Graficar Señal Original
     plt.subplot(3, 1, 1)
@@ -47,13 +47,17 @@ frecuencia = 5.0  # Frecuencia en Hz (A4)
 señalOriginal = generarSeñalAudio(duracion, radioMuestreo, frecuencia)
 
 # Configurar el nivel de ruido gaussiano que deseas agregar
-nivelRuido = 0.1
+nivelRuidoInput = input('>>> Inserte un nivel de ruido del 1 al 100 <<< \n')
+nivelRuido = float(nivelRuidoInput) * (10.0 ** -3)
 
 # Agregar ruido gaussiano a la señal original
 señalRuido = agregarRuido(señalOriginal, nivelRuido)
 
 # Recuperar la señal original
 señalRecuperada = recuperarSeñal(señalRuido)
+
+# Mostrar las señales
+graficarSeñales(señalOriginal, señalRuido, señalRecuperada)
 
 
 

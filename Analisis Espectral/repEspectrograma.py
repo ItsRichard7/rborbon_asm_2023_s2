@@ -22,15 +22,15 @@ def trazarEspectrograma(señalAudio, radioMuestreo):
 
 # Parámetros de la señal de audio
 duracionInput = input('>>> Inserte la duración de la señal en segundos <<< \n')
-duracion = float(duracionInput)         # Duración en segundos
+duracion = float(duracionInput) # Duración en segundos
 
 radioMuestreo = 44100 # Tasa de muestreo en Hz
 
 frecuenciaInput = input('>>> Inserte la frecuencia de la señal en Hertz <<< \n')
-frecuencia = float(frecuenciaInput)      # Frecuencia de la onda sinusoidal en Hz
+frecuencia = float(frecuenciaInput) # Frecuencia de la onda sinusoidal en Hz
 
 amplitudInput = input('>>> Inserte la amplitud de la onda <<< \n')
-amplitud = float(amplitudInput)      # Aumenta la amplitud (cambia este valor según sea necesario)
+amplitud = float(amplitudInput) # Aumenta la amplitud (cambia este valor según sea necesario)
 
 # Genera la señal de audio con la amplitud aumentada
 señalAudio = generarSeñalAudio(duracion, radioMuestreo, frecuencia, amplitud)

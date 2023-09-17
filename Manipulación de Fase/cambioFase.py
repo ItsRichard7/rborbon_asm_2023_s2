@@ -27,15 +27,15 @@ def graficarSeñales(señalOriginal, señalModificada, vectorTiempo):
     plt.show()
 
 # Crear una señal de audio (por ejemplo, una onda sinusoidal)
-duracion = 1
-radioMuestreo = 44100
-frecuencia = 5
-vectorTiempo = np.linspace(0, duracion, int(radioMuestreo * duracion), endpoint=False)
-señalAudio = np.sin(2 * np.pi * frecuencia * vectorTiempo)
+duracion = 1 # Duración en segundos
+radioMuestreo = 44100 # Tasa de muestreo en Hz
+frecuencia = 5 # Frecuencia de la onda sinusoidal en Hz
+vectorTiempo = np.linspace(0, duracion, int(radioMuestreo * duracion), endpoint=False) # Información eje X
+señalAudio = np.sin(2 * np.pi * frecuencia * vectorTiempo) # Señal sonora senoidal
 
 # Solicitar al usuario el desfase que desea aplicar
 gradosDesfaseInput = input('>>> Inserte los grados de desfase que desea aplicar <<< \n')
-gradosDesfase = float(gradosDesfaseInput)
+gradosDesfase = float(gradosDesfaseInput) # Desfase a aplicar
 señalModificada = modificarFase(señalAudio, gradosDesfase)
 
 # Mostrar ambas señales
